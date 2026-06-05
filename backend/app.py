@@ -6,6 +6,8 @@ from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from config import config
+from routes.auth import auth_bp
+from middleware.error_handler import register_error_handlers
 import os
 
 def create_app(config_name=None):
@@ -24,7 +26,10 @@ def create_app(config_name=None):
     jwt = JWTManager(app)
     
     # Registar blueprints/rotas
-    # TODO: Adicionar imports de rotas quando existirem
+    app.register_blueprint(auth_bp)
+    
+    # Registar manipuladores de erro
+    register_error_handlers(app)
     
     # Rotas básicas
     @app.route('/api/health', methods=['GET'])
