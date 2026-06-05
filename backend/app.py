@@ -8,6 +8,9 @@ from flask_jwt_extended import JWTManager
 from config import config
 from routes.auth import auth_bp
 from routes.alunos import alunos_bp
+from routes.salas import salas_bp
+from routes.computadores_sala import computadores_sala_bp
+from routes.computadores_aluno import computadores_aluno_bp
 from middleware.error_handler import register_error_handlers
 import os
 
@@ -29,6 +32,9 @@ def create_app(config_name=None):
     # Registar blueprints/rotas
     app.register_blueprint(auth_bp)
     app.register_blueprint(alunos_bp)
+    app.register_blueprint(salas_bp)
+    app.register_blueprint(computadores_sala_bp)
+    app.register_blueprint(computadores_aluno_bp)
     
     # Registar manipuladores de erro
     register_error_handlers(app)
