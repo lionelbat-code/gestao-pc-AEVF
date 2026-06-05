@@ -7,6 +7,7 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from config import config
 from routes.auth import auth_bp
+from routes.alunos import alunos_bp
 from middleware.error_handler import register_error_handlers
 import os
 
@@ -27,6 +28,7 @@ def create_app(config_name=None):
     
     # Registar blueprints/rotas
     app.register_blueprint(auth_bp)
+    app.register_blueprint(alunos_bp)
     
     # Registar manipuladores de erro
     register_error_handlers(app)
